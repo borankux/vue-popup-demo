@@ -1,12 +1,12 @@
 <template>
   <div>
-    <button @click="togglePopup(true)">Show</button>
-    <button @click="togglePopup(false)">Hide</button>
-    <button @click="changePopup({title:'Title form button', content:'Content from button'})">Change</button>
+    <button @click="togglePopup(true)">Show Dialog</button>
+    <button @click="togglePopup(false)">Hide Dialog</button>
+    <button @click="changePopup({title:'Title form button', content:'Content from button'})">Change Stuff</button>
 
     <div>{{msg}}</div>
-    <popup 
-    :show="showPopup" 
+    <popup
+    :show="showPopup"
     :message="msg"
     @onDecided="handleDecision"
     />
@@ -22,18 +22,20 @@ export default {
   },
   data () {
   	return {
-  		msg:{ 
+  		msg:{
   			title: "default title from father",
   			content: "default content from father"
   		},
-  		showPopup: false,
+  		showPopup: {},
   	}
   },
   methods: {
-  	togglePopup(isShow) {
-  		this.showPopup = isShow;
-  	},
-
+    togglePopup(isShow) {
+      this.showPopup = {
+        val: isShow,
+        key: (new Date()).getMilliseconds()
+      };
+    },
   	changePopup(msg){
   		this.msg = msg;
   	},

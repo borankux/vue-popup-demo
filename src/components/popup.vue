@@ -23,20 +23,23 @@ export default {
       default:function() {
       	return {
       		title: 'default title',
-      		content: 'default content'      		
+      		content: 'default content'
       	}
       }
     },
     show: {
-      type: Boolean,
-      default: false
+      type: Object,
+      default: {
+        val: false,
+        key: '123165142'
+      }
     }
   },
   watch :{
   	'show': {
   		handler(val){
-  			 this.showPopup = val;
-  		},
+  		  this.showPopup = val.val
+      },
   		deep: true,
   		immediate: true,
   	},
@@ -46,6 +49,9 @@ export default {
   		},
   		deep: true
   	}
+  },
+  computed: {
+
   },
   methods: {
     close(result) {
